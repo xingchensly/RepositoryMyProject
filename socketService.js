@@ -46,4 +46,3 @@ let server = ws.createServer(function (conn) {
     })
 })
 server.listen(port);//8001端口
-console.log('ws://127.0.0.1:'+port+' is runing.')
