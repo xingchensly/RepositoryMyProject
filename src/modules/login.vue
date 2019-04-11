@@ -10,7 +10,7 @@
         </el-form-item>
       </el-form>
       <div class="buttons">
-        <el-button type="primary">登录</el-button>
+        <el-button type="primary" @click="loginIn">登录</el-button>
 
       </div>
     </div>
@@ -29,6 +29,9 @@ export default {
     console.log("login");
   },
   methods: {
+    loginIn(){
+      this.$router.push({name:'course'})
+    },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },

@@ -1,6 +1,6 @@
 <template>
   <div id="course">
-    <template v-for="(value,index) in urlList" >
+    <!-- <template v-for="(value,index) in urlList" >
       <iframe v-if="nav==index" :src="value" frameborder="0" :key="index" :style="index>1?'padding-top:60px':''"></iframe>
     </template>
     <div class="mask">
@@ -8,7 +8,7 @@
         <el-button type="primary" @click="nav=index" v-if="index==nav" class="active" :key="index">{{value}}</el-button>
         <el-button type="primary" @click="nav=index" v-else :key="index">{{value}}</el-button>
       </template>
-    </div>
+    </div> -->
 
   </div>
 </template>
