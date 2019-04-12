@@ -100,7 +100,7 @@ export default {
 #charts {
   width: 100%;
   height: 100%;
-  background-color: #07294a;
+  background-color: transparent;
   .zone1,.zone2{
     width: 20%;
     height: 100%;

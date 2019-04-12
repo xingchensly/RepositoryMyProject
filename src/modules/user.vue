@@ -167,10 +167,13 @@ console.log(1,this.$store)
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: #fff;
+  // background-color: #fff;
   // .el-menu--collapse {
   //   width: 35px;
   // }
+  .el-menu.el-menu--horizontal{
+    border-bottom: none;
+  }
   .el-menu--horizontal > .el-submenu,
   .el-menu--horizontal > .el-menu-item {
     float: right;
@@ -195,10 +198,6 @@ console.log(1,this.$store)
     transform: translateY(-50%);
     z-index: 2;
   }
-  // .el-menu--horizontal>.el-submenu .el-submenu__title,.el-menu--horizontal>.el-menu-item{
-  //   height: 40px;
-  //   line-height: 40px;
-  // }
 }
 .content {
   position: absolute;
