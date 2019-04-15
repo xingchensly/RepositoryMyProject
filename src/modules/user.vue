@@ -167,10 +167,12 @@ console.log(1,this.$store)
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: #fff;
   // .el-menu--collapse {
   //   width: 35px;
   // }
+  .el-menu.el-menu--horizontal{
+    border-bottom: none;
+  }
   .el-menu--horizontal > .el-submenu,
   .el-menu--horizontal > .el-menu-item {
     float: right;
