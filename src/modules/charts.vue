@@ -1,10 +1,15 @@
 <template>
   <div id="charts">
-    <div class="zone1 fl">
-      <div class="charts1 fl" :ref="'chart'+index" v-for="(value,index) in 4" :key="index"></div>
+    <div class="somePic">
+      <!-- <iframe src="http://172.93.39.153/AAAAA/" frameborder="0"></iframe> -->
     </div>
-    <div class="zone2 fr">
-      <div class="charts1 fl" :ref="'chart2'+index" v-for="(value,index) in 4" :key="index"></div>
+    <div class="chartsZone">
+      <div class="zone1 fl">
+        <div class="charts1 fl" :ref="'chart'+index" v-for="(value,index) in 4" :key="index"></div>
+      </div>
+      <div class="zone2 fr">
+        <div class="charts1 fl" :ref="'chart2'+index" v-for="(value,index) in 4" :key="index"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -16,7 +21,6 @@ export default {
     return {};
   },
   mounted() {
-    // this.chartInit()
     let refslist = this.$refs;
     console.log("refs", refslist);
     for (let key in refslist) {
@@ -57,6 +61,7 @@ export default {
             }
           },
           xAxis: {
+            splitLine: { show: false },
             axisLine: {
               lineStyle: {
                 color: "#fff"
@@ -68,6 +73,7 @@ export default {
             data: ["电压", "电流", "电容", "功率", "功效", "温度"]
           },
           yAxis: {
+            splitLine: { show: false },
             axisLine: {
               lineStyle: {
                 color: "#fff"
@@ -129,6 +135,8 @@ export default {
           },
           xAxis: [
             {
+              splitLine: { show: false },
+
               type: "category",
               axisTick: {
                 alignWithLabel: true
@@ -168,6 +176,8 @@ export default {
               ]
             },
             {
+            splitLine:{show: false},
+
               type: "category",
               axisTick: {
                 alignWithLabel: true
@@ -209,6 +219,8 @@ export default {
           ],
           yAxis: [
             {
+            splitLine:{show: false},
+
               type: "value",
 
               axisLine: {
@@ -287,6 +299,8 @@ export default {
           },
           xAxis: [
             {
+            splitLine:{show: false},
+
               axisLine: {
                 lineStyle: {
                   color: "#fff"
@@ -317,6 +331,8 @@ export default {
           ],
           yAxis: [
             {
+            splitLine:{show: false},
+
               axisLine: {
                 lineStyle: {
                   color: "#fff"
@@ -335,6 +351,8 @@ export default {
               }
             },
             {
+            splitLine:{show: false},
+
               axisLine: {
                 lineStyle: {
                   color: "#fff"
@@ -421,9 +439,21 @@ export default {
   width: 100%;
   height: 100%;
   background-color: transparent;
+  position: relative;
+  .somePic {
+    width: 100%;
+    height: 100%;
+  }
+  .chartsZone {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .zone1,
   .zone2 {
-    width: 20%;
+    width: 22%;
     height: 100%;
   }
   .charts1 {

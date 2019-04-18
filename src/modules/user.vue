@@ -197,10 +197,6 @@ console.log(1,this.$store)
     transform: translateY(-50%);
     z-index: 2;
   }
-  // .el-menu--horizontal>.el-submenu .el-submenu__title,.el-menu--horizontal>.el-menu-item{
-  //   height: 40px;
-  //   line-height: 40px;
-  // }
 }
 .content {
   position: absolute;
