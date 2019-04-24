@@ -1,15 +1,13 @@
 <template>
   <div id="charts">
     <div class="somePic">
-      <!-- <iframe src="http://172.93.39.153/AAAAA/" frameborder="0"></iframe> -->
+      <iframe src="http://172.93.39.153/AAAAA/" frameborder="0"></iframe>
     </div>
-    <div class="chartsZone">
-      <div class="zone1 fl">
-        <div class="charts1 fl" :ref="'chart'+index" v-for="(value,index) in 4" :key="index"></div>
-      </div>
-      <div class="zone2 fr">
-        <div class="charts1 fl" :ref="'chart2'+index" v-for="(value,index) in 4" :key="index"></div>
-      </div>
+    <div class="zone1 fl">
+      <div class="charts1 fl" :ref="'chart'+index" v-for="(value,index) in 4" :key="index"></div>
+    </div>
+    <div class="zone2 fr">
+      <div class="charts1 fl" :ref="'chart2'+index" v-for="(value,index) in 4" :key="index"></div>
     </div>
   </div>
 </template>
@@ -54,7 +52,7 @@ export default {
           },
           tooltip: {},
           legend: {
-            data: ["销量"],
+            data: ["电量"],
 
             textStyle: {
               color: "#fff"
@@ -70,7 +68,7 @@ export default {
             axisLabel: {
               color: "#fff"
             },
-            data: ["电压", "电流", "电容", "功率", "功效", "温度"]
+            data: ["电压", "电流", "电容", "功率", "功效"]
           },
           yAxis: {
             splitLine: { show: false },
@@ -85,7 +83,7 @@ export default {
           },
           series: [
             {
-              name: "销量",
+              name: "油量",
               type: "bar",
               data: [5, 20, 36, 10, 10, 20]
             }
@@ -102,15 +100,15 @@ export default {
           color: colors,
           series: [
             {
-              name: "访问来源",
+              name: "厂房编号",
               type: "pie",
               radius: "55%",
               roseType: "angle",
               data: [
-                { value: 235, name: "水流" },
-                { value: 274, name: "电流" },
-                { value: 310, name: "人流" },
-                { value: 335, name: "风流" },
+                { value: 235, name: "油压" },
+                { value: 274, name: "管压" },
+                { value: 310, name: "电压" },
+                { value: 335, name: "电流" },
                 { value: 400, name: "冷却水流" }
               ]
             }
@@ -127,7 +125,7 @@ export default {
             }
           },
           legend: {
-            data: ["2015 降水量", "2016 降水量"]
+            data: ["2015 蒸汽量", "2016 蒸汽量"]
           },
           grid: {
             top: 70,
@@ -151,7 +149,7 @@ export default {
                 label: {
                   formatter: function(params) {
                     return (
-                      "降水量  " +
+                      "蒸汽量  " +
                       params.value +
                       (params.seriesData.length
                         ? "：" + params.seriesData[0].data
@@ -176,7 +174,7 @@ export default {
               ]
             },
             {
-            splitLine:{show: false},
+              splitLine: { show: false },
 
               type: "category",
               axisTick: {
@@ -192,7 +190,7 @@ export default {
                 label: {
                   formatter: function(params) {
                     return (
-                      "降水量  " +
+                      "蒸汽量  " +
                       params.value +
                       (params.seriesData.length
                         ? "：" + params.seriesData[0].data
@@ -219,7 +217,7 @@ export default {
           ],
           yAxis: [
             {
-            splitLine:{show: false},
+              splitLine: { show: false },
 
               type: "value",
 
@@ -238,7 +236,7 @@ export default {
               label: {
                 color: "#fff"
               },
-              name: "2018 降水量",
+              name: "2018 蒸汽量",
               type: "line",
               xAxisIndex: 1,
               smooth: true,
@@ -258,7 +256,7 @@ export default {
               ]
             },
             {
-              name: "2017 降水量",
+              name: "2017 蒸汽量",
               type: "line",
               smooth: true,
               data: [
@@ -295,11 +293,11 @@ export default {
             textStyle: {
               color: "#fff"
             },
-            data: ["蒸发量", "降水量", "平均温度"]
+            data: ["蒸发量", "蒸汽量", "平均温度"]
           },
           xAxis: [
             {
-            splitLine:{show: false},
+              splitLine: { show: false },
 
               axisLine: {
                 lineStyle: {
@@ -331,7 +329,7 @@ export default {
           ],
           yAxis: [
             {
-            splitLine:{show: false},
+              splitLine: { show: false },
 
               axisLine: {
                 lineStyle: {
@@ -351,7 +349,7 @@ export default {
               }
             },
             {
-            splitLine:{show: false},
+              splitLine: { show: false },
 
               axisLine: {
                 lineStyle: {
@@ -391,7 +389,7 @@ export default {
               ]
             },
             {
-              name: "降水量",
+              name: "蒸汽量",
               type: "bar",
               data: [
                 2.6,
@@ -443,18 +441,27 @@ export default {
   .somePic {
     width: 100%;
     height: 100%;
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
   }
   .chartsZone {
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
   }
   .zone1,
   .zone2 {
     width: 22%;
     height: 100%;
+    position: absolute;
+    top: 0;
+  }
+  .zone1{
+    left: 0;
+  }
+  .zone2{
+    right: 0;
   }
   .charts1 {
     width: 100%;
