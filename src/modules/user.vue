@@ -47,12 +47,10 @@
               <i class="iconfont icon-coursera"></i>
               <span slot="title">实时流程</span>
             </template>
-            <el-submenu index="1-1">
-              <template slot="title">XXXX1车间</template>
-              <el-menu-item index="1-1-1">xxxx工段视频</el-menu-item>
-              <el-menu-item index="1-1-2">xxxx工段视频</el-menu-item>
-            </el-submenu>
-            <el-menu-item index="1-2">XXXX2车间</el-menu-item>
+            <el-menu-item index="1-1">gasPipeline</el-menu-item>
+            <el-menu-item index="1-2">htap</el-menu-item>
+            <el-menu-item index="1-3">metering</el-menu-item>
+            <el-menu-item index="1-4">largeScreen</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -125,17 +123,6 @@ console.log(1,this.$store)
   methods: {
     switchNavStyle() {
       this.isCollapse = !this.isCollapse;
-      // js修改侧栏宽度
-      // if (this.isCollapse) {
-      //   if (this.navEls.length == 0)
-      //     this.navEls = document.getElementsByClassName("el-submenu__title");
-      //   console.log("this.navEls", this.navEls);
-      //   setTimeout(() => {
-      //     for (let i = 2; i < this.navEls.length; i++) {
-      //       this.navEls[i].style["padding-left"] = "8px";
-      //     }
-      //   },500);
-      // }
     },
     // sendmessage() {
     //   console.log("sendmessage");
@@ -148,11 +135,24 @@ console.log(1,this.$store)
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
       this.curNav = keyPath[0];
-      console.log("routes", routes[0].children[this.curNav - 1].name);
+      
+      let keys=key.split('-');
+      let n=0;
+      let array_navs=routes[0].children;
+      let componentName=this.getRouteName(0,keys,array_navs);
 
-      // this.$router.push(routes[0].children[this.curNav-1].name)
-      this.$router.push({ name: routes[0].children[this.curNav - 1].name });
+      console.log("componentName", componentName);
+      this.$router.push({ name: componentName });
     },
+    getRouteName(cursor,keys,arrTemple){
+        let index=keys[cursor]-1;
+        let objTemple=arrTemple[index];
+        if(objTemple.hasOwnProperty('children')){
+          return this.getRouteName(cursor+1,keys,objTemple.children);
+        }else{
+          return objTemple.name;
+        }
+      },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
     },

@@ -1,7 +1,6 @@
 <template>
-<dir id="charts">
-    <router-view></router-view>
-</dir>
+  <div id="chartCabin">
+  </div>
 </template>
 <script>
 export default {
@@ -14,13 +13,11 @@ export default {
 };
 </script>
 <style lang="scss">
-#charts {
+#chartCabin {
   width: 100%;
   height: 100%;
   background-color: transparent;
   position: relative;
-  margin: 0;
-  padding: 0;
 }
 </style>
 
