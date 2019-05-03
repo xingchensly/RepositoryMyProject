@@ -200,10 +200,10 @@ export let chartDataList = {
     dataset: {
       source: [
         ['product', '2015', '2016', '2017'],
-        ['Matcha', 43.3, 85.8, 93.7],
-        ['Milk', 83.1, 73.4, 55.1],
-        ['Cheese', 86.4, 65.2, 82.5],
-        ['Walnut', 72.4, 53.9, 39.1]
+        ['产油1', 43.3, 85.8, 93.7],
+        ['产油2', 83.1, 73.4, 55.1],
+        ['产油3', 86.4, 65.2, 82.5],
+        ['产油4', 72.4, 53.9, 39.1]
       ]
     },
     xAxis: {
@@ -316,7 +316,7 @@ export let chartDataList = {
     },
     legend: {
       ...defaultStyle.legend,
-      data: ['蒸发量', '降水量', '平均温度']
+      data: ['冷却水量', '油量', '平均温度']
     },
     xAxis: [
       {
@@ -332,7 +332,7 @@ export let chartDataList = {
       {
         ...defaultStyle.axis,
         type: 'value',
-        name: '水量',
+        name: '高度',
         min: 0,
         max: 250,
         interval: 50,
@@ -354,12 +354,12 @@ export let chartDataList = {
     ],
     series: [
       {
-        name: '蒸发量',
+        name: '冷却水量',
         type: 'bar',
         data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
       },
       {
-        name: '降水量',
+        name: '油量',
         type: 'bar',
         data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
       },
@@ -534,12 +534,12 @@ export let chartDataList = {
   radar: {
     radar: {
       indicator: [
-        { name: 'AQI', max: 300 },
-        { name: 'PM2.5', max: 250 },
-        { name: 'PM10', max: 300 },
-        { name: 'CO', max: 5 },
-        { name: 'NO2', max: 200 },
-        { name: 'SO2', max: 100 }
+        { name: '油参1', max: 300 },
+        { name: '油参2', max: 250 },
+        { name: '油参3', max: 300 },
+        { name: '油参4', max: 5 },
+        { name: '油参5', max: 200 },
+        { name: '油参6', max: 100 }
       ],
       shape: 'circle',
       splitNumber: 5,
