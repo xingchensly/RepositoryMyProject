@@ -26,17 +26,10 @@ export default {
     };
   },
   mounted() {
-    console.log("login");
   },
   methods: {
     loginIn(){
-      this.$router.push({name:'course'})
-    },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      this.$router.push({name:'metering'})
     }
   }
 };

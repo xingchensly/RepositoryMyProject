@@ -1,6 +1,8 @@
+/* eslint-disable camelcase */
+/* eslint-disable eqeqeq */
 /* eslint-disable no-dupe-keys */
-import { coverArray, convertData, data1, data2, xAxisData, dataGZ } from './mapConfig.js'
-
+import { coverArray, convertData, data1, data2, xAxisData, dataGZ, category, lineData, barData, rawData_world, makeMapData_world, makeParallelAxis_world, schema_world } from './mapConfig.js'
+let echarts = require('echarts')
 export let urlList = {
   metering: '//www.hightopo.com/demo/metering-station/',
   largeScreen: '//www.hightopo.com/demo/large-screen/index.html',
@@ -656,6 +658,675 @@ export let chartDataList = {
             borderWidth: 1
           }
         }
+      }
+    ]
+  },
+  waterFullBar1: {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { // 坐标轴指示器，坐标轴触发有效
+        type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+      },
+      formatter: function (params) {
+        let tar
+        if (params[1].value != '-') {
+          tar = params[1]
+        } else {
+          tar = params[0]
+        }
+        return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value
+      }
+    },
+    legend: {
+      ...defaultStyle.legend,
+      data: ['支出', '收入']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      ...defaultStyle.axis,
+      type: 'category',
+      splitLine: { show: false },
+      data: (function () {
+        let list = []
+        for (let i = 1; i <= 11; i++) {
+          list.push('11月' + i + '日')
+        }
+        return list
+      }())
+    },
+    yAxis: {
+      ...defaultStyle.axis,
+      type: 'value'
+    },
+    series: [
+      {
+        name: '辅助',
+        type: 'bar',
+        stack: '总量',
+        itemStyle: {
+          normal: {
+            barBorderColor: 'rgba(0,0,0,0)',
+            color: 'rgba(0,0,0,0)'
+          },
+          emphasis: {
+            barBorderColor: 'rgba(0,0,0,0)',
+            color: 'rgba(0,0,0,0)'
+          }
+        },
+        data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
+      },
+      {
+        name: '收入',
+        type: 'bar',
+        stack: '总量',
+        label: {
+          normal: {
+            show: true,
+            position: 'top'
+          }
+        },
+        data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
+      },
+      {
+        name: '支出',
+        type: 'bar',
+        stack: '总量',
+        label: {
+          normal: {
+            show: true,
+            position: 'bottom'
+          }
+        },
+        data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203]
+      }
+    ],
+    color: colors
+  },
+  waterFullBar2: {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { // 坐标轴指示器，坐标轴触发有效
+        type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+      },
+      formatter: function (params) {
+        let tar
+        if (params[1].value != '-') {
+          tar = params[1]
+        } else {
+          tar = params[0]
+        }
+        return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value
+      }
+    },
+    legend: {
+      ...defaultStyle.legend,
+      data: ['支出', '收入']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      ...defaultStyle.axis,
+      type: 'category',
+      splitLine: { show: false },
+      data: (function () {
+        let list = []
+        for (let i = 1; i <= 11; i++) {
+          list.push('11月' + i + '日')
+        }
+        return list
+      }())
+    },
+    yAxis: {
+      ...defaultStyle.axis,
+      type: 'value'
+    },
+    series: [
+      {
+        name: '辅助',
+        type: 'bar',
+        stack: '总量',
+        itemStyle: {
+          normal: {
+            barBorderColor: 'rgba(0,0,0,0)',
+            color: 'rgba(0,0,0,0)'
+          },
+          emphasis: {
+            barBorderColor: 'rgba(0,0,0,0)',
+            color: 'rgba(0,0,0,0)'
+          }
+        },
+        data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
+      },
+      {
+        name: '收入',
+        type: 'bar',
+        stack: '总量',
+        label: {
+          normal: {
+            show: true,
+            position: 'top'
+          }
+        },
+        data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
+      },
+      {
+        name: '支出',
+        type: 'bar',
+        stack: '总量',
+        label: {
+          normal: {
+            show: true,
+            position: 'bottom'
+          }
+        },
+        data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203]
+      }
+    ],
+    color: colors
+  },
+  lineArea1: {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985'
+        }
+      }
+    },
+    legend: {
+      ...defaultStyle.legend,
+      data: ['油产量1', '油产量2', '油产量3', '油产量4', '油产量5']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: [
+      {
+        ...defaultStyle.axis,
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+      }
+    ],
+    yAxis: [
+      {
+        ...defaultStyle.axis,
+        type: 'value'
+      }
+    ],
+    series: [
+      {
+        name: '油产量1',
+        type: 'line',
+        stack: '总量',
+        areaStyle: {},
+        data: [120, 132, 101, 134, 90, 230, 210]
+      },
+      {
+        name: '油产量2',
+        type: 'line',
+        stack: '总量',
+        areaStyle: {},
+        data: [220, 182, 191, 234, 290, 330, 310]
+      },
+      {
+        name: '油产量3',
+        type: 'line',
+        stack: '总量',
+        areaStyle: {},
+        data: [150, 232, 201, 154, 190, 330, 410]
+      },
+      {
+        name: '油产量4',
+        type: 'line',
+        stack: '总量',
+        areaStyle: { normal: {} },
+        data: [320, 332, 301, 334, 390, 330, 320]
+      },
+      {
+        name: '油产量5',
+        type: 'line',
+        stack: '总量',
+        label: {
+          normal: {
+            show: true,
+            position: 'top'
+          }
+        },
+        areaStyle: { normal: {} },
+        data: [820, 932, 901, 934, 1290, 1330, 1320]
+      }
+    ],
+    color: colors
+  },
+  lineArea2: {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#6a7985'
+        }
+      }
+    },
+    legend: {
+      ...defaultStyle.legend,
+      data: ['油产量1', '油产量2', '油产量3', '油产量4', '油产量5']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: [
+      {
+        ...defaultStyle.axis,
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+      }
+    ],
+    yAxis: [
+      {
+        ...defaultStyle.axis,
+        type: 'value'
+      }
+    ],
+    series: [
+      {
+        name: '油产量1',
+        type: 'line',
+        stack: '总量',
+        areaStyle: {},
+        data: [120, 132, 101, 134, 90, 230, 210]
+      },
+      {
+        name: '油产量2',
+        type: 'line',
+        stack: '总量',
+        areaStyle: {},
+        data: [220, 182, 191, 234, 290, 330, 310]
+      },
+      {
+        name: '油产量3',
+        type: 'line',
+        stack: '总量',
+        areaStyle: {},
+        data: [150, 232, 201, 154, 190, 330, 410]
+      },
+      {
+        name: '油产量4',
+        type: 'line',
+        stack: '总量',
+        areaStyle: { normal: {} },
+        data: [320, 332, 301, 334, 390, 330, 320]
+      },
+      {
+        name: '油产量5',
+        type: 'line',
+        stack: '总量',
+        label: {
+          normal: {
+            show: true,
+            position: 'top'
+          }
+        },
+        areaStyle: { normal: {} },
+        data: [820, 932, 901, 934, 1290, 1330, 1320]
+      }
+    ],
+    color: colors
+  },
+  lineBar1: {
+    backgroundColor: '#0f375f',
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    legend: {
+      data: ['line', 'bar'],
+      textStyle: {
+        color: '#ccc'
+      }
+    },
+    xAxis: {
+      data: category,
+      axisLine: {
+        lineStyle: {
+          color: '#ccc'
+        }
+      }
+    },
+    yAxis: {
+      splitLine: { show: false },
+      axisLine: {
+        lineStyle: {
+          color: '#ccc'
+        }
+      }
+    },
+    series: [{
+      name: 'line',
+      type: 'line',
+      smooth: true,
+      showAllSymbol: true,
+      symbol: 'emptyCircle',
+      symbolSize: 15,
+      data: lineData
+    }, {
+      name: 'bar',
+      type: 'bar',
+      barWidth: 10,
+      itemStyle: {
+        normal: {
+          barBorderRadius: 5,
+          color: new echarts.graphic.LinearGradient(
+            0, 0, 0, 1,
+            [
+              { offset: 0, color: '#14c8d4' },
+              { offset: 1, color: '#43eec6' }
+            ]
+          )
+        }
+      },
+      data: barData
+    }, {
+      name: 'line',
+      type: 'bar',
+      barGap: '-100%',
+      barWidth: 10,
+      itemStyle: {
+        normal: {
+          color: new echarts.graphic.LinearGradient(
+            0, 0, 0, 1,
+            [
+              { offset: 0, color: 'rgba(20,200,212,0.5)' },
+              { offset: 0.2, color: 'rgba(20,200,212,0.2)' },
+              { offset: 1, color: 'rgba(20,200,212,0)' }
+            ]
+          )
+        }
+      },
+      z: -12,
+      data: lineData
+    }, {
+      name: 'dotted',
+      type: 'pictorialBar',
+      symbol: 'rect',
+      itemStyle: {
+        normal: {
+          color: '#0f375f'
+        }
+      },
+      symbolRepeat: true,
+      symbolSize: [12, 4],
+      symbolMargin: 1,
+      z: -10,
+      data: lineData
+    }]
+  },
+  lineBar2: {
+    backgroundColor: '#0f375f',
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    legend: {
+      data: ['line', 'bar'],
+      textStyle: {
+        color: '#ccc'
+      }
+    },
+    xAxis: {
+      data: category,
+      axisLine: {
+        lineStyle: {
+          color: '#ccc'
+        }
+      }
+    },
+    yAxis: {
+      splitLine: { show: false },
+      axisLine: {
+        lineStyle: {
+          color: '#ccc'
+        }
+      }
+    },
+    series: [{
+      name: 'line',
+      type: 'line',
+      smooth: true,
+      showAllSymbol: true,
+      symbol: 'emptyCircle',
+      symbolSize: 15,
+      data: lineData
+    }, {
+      name: 'bar',
+      type: 'bar',
+      barWidth: 10,
+      itemStyle: {
+        normal: {
+          barBorderRadius: 5,
+          color: new echarts.graphic.LinearGradient(
+            0, 0, 0, 1,
+            [
+              { offset: 0, color: '#14c8d4' },
+              { offset: 1, color: '#43eec6' }
+            ]
+          )
+        }
+      },
+      data: barData
+    }, {
+      name: 'line',
+      type: 'bar',
+      barGap: '-100%',
+      barWidth: 10,
+      itemStyle: {
+        normal: {
+          color: new echarts.graphic.LinearGradient(
+            0, 0, 0, 1,
+            [
+              { offset: 0, color: 'rgba(20,200,212,0.5)' },
+              { offset: 0.2, color: 'rgba(20,200,212,0.2)' },
+              { offset: 1, color: 'rgba(20,200,212,0)' }
+            ]
+          )
+        }
+      },
+      z: -12,
+      data: lineData
+    }, {
+      name: 'dotted',
+      type: 'pictorialBar',
+      symbol: 'rect',
+      itemStyle: {
+        normal: {
+          color: '#0f375f'
+        }
+      },
+      symbolRepeat: true,
+      symbolSize: [12, 4],
+      symbolMargin: 1,
+      z: -10,
+      data: lineData
+    }]
+  },
+  worldMap: {
+    title: {
+      text: 'Prices and Earnings 2019',
+      left: 'center',
+      textStyle: {
+        color: '#fff'
+      },
+      z: 200
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: function (params) {
+        var value = (params.value + '').split('.')
+        value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,') + '.' + value[1]
+        return params.seriesName + '<br/>' + params.name + ' : ' + value
+      }
+    },
+    brush: {
+      geoIndex: 0,
+      brushLink: 'all',
+      inBrush: {
+        opacity: 1,
+        symbolSize: 14
+      },
+      outOfBrush: {
+        color: '#000',
+        opacity: 0.2
+      },
+      z: 10
+    },
+    geo: {
+      map: 'world',
+      silent: true,
+      label: {
+        emphasis: {
+          show: false,
+          areaColor: '#eee'
+        }
+      },
+      itemStyle: {
+        normal: {
+          borderWidth: 0.2,
+          borderColor: '#404a59'
+        }
+      },
+      left: '6%',
+      top: 40,
+      bottom: '54%',
+      right: '14%',
+      roam: true
+    },
+    parallelAxis: makeParallelAxis_world(schema_world),
+    grid: [{
+      show: true,
+      left: 0,
+      right: 0,
+      top: '48%',
+      bottom: 0,
+      borderColor: 'transparent',
+      z: 99
+    }, {
+      show: true,
+      left: 0,
+      right: 0,
+      top: 0,
+      height: 28,
+      borderColor: 'transparent',
+      z: 199
+    }],
+    parallel: {
+      top: '50%',
+      left: 60,
+      right: 20,
+      bottom: 100,
+      axisExpandable: true,
+      axisExpandCenter: 15,
+      axisExpandCount: 10,
+      axisExpandWidth: 60,
+      axisExpandTriggerOn: 'mousemove',
+
+      z: 100,
+      parallelAxisDefault: {
+        type: 'value',
+        nameLocation: 'start',
+        nameRotate: 25,
+        // nameLocation: 'end',
+        nameTextStyle: {
+          fontSize: 12
+        },
+        nameTruncate: {
+          maxWidth: 170
+        },
+        nameGap: 20,
+        splitNumber: 3,
+        tooltip: {
+          show: true
+        },
+        axisLine: {
+          // show: false,
+          lineStyle: {
+            width: 1,
+            color: 'rgba(255,255,255,0.3)'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        splitLine: {
+          show: false
+        },
+        z: 100
+      }
+    },
+    series: [
+      {
+        name: 'Prices and Earnings 2012',
+        type: 'scatter',
+        coordinateSystem: 'geo',
+        symbolSize: 8,
+        data: makeMapData_world(rawData_world),
+        activeOpacity: 1,
+        label: {
+          normal: {
+            formatter: '{b}',
+            position: 'right',
+            show: false
+          },
+          emphasis: {
+            show: true
+          }
+        },
+        symbolSize: 10,
+        // symbolSize: function (data) {
+        //     return Math.max(5, data[2] / 5);
+        // },
+        itemStyle: {
+          normal: {
+            borderColor: '#fff',
+            color: '#577ceb'
+          }
+        }
+      },
+      {
+        name: 'parallel',
+        type: 'parallel',
+        smooth: true,
+        lineStyle: {
+          normal: {
+            color: '#577ceb',
+            width: 0.5,
+            opacity: 0.6
+          }
+        },
+        z: 100,
+        blendMode: 'lighter',
+        data: rawData_world
       }
     ]
   }

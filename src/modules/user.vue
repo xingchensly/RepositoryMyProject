@@ -11,6 +11,7 @@
         background-color="#3c8dbc"
         text-color="#fff"
         active-text-color="#ffd04b"
+        @select="handleSelectTop"
       >
         <el-menu-item index="1">退出</el-menu-item>
         <el-submenu index="2">
@@ -33,8 +34,6 @@
         <el-menu
           :default-active="curNav"
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
@@ -71,7 +70,6 @@
             <el-menu-item index="3-2">填报报表</el-menu-item>
             <el-menu-item index="3-3">统计分析</el-menu-item>
             <el-menu-item index="3-4">驾驶舱</el-menu-item>
-            <el-menu-item index="3-5">数据钻取</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">
@@ -117,8 +115,6 @@ export default {
   },
   components: {},
   mounted() {
-console.log(1,this.$store)
-
   },
   methods: {
     switchNavStyle() {
@@ -132,16 +128,15 @@ console.log(1,this.$store)
     //   console.log("closemessage");
     //   WS.close();
     // },
+    handleSelectTop(key,keyPath){
+      if(key==1) this.$router.push({ name: 'login' });
+    },
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
       this.curNav = keyPath[0];
-      
       let keys=key.split('-');
       let n=0;
       let array_navs=routes[0].children;
       let componentName=this.getRouteName(0,keys,array_navs);
-
-      console.log("componentName", componentName);
       this.$router.push({ name: componentName });
     },
     getRouteName(cursor,keys,arrTemple){
@@ -152,13 +147,7 @@ console.log(1,this.$store)
         }else{
           return objTemple.name;
         }
-      },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
+      }
   }
 };
 </script>

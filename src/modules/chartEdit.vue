@@ -28,14 +28,12 @@ export default {
     this.refs = this.$refs;
 
     for (let key in this.refs) {
-      console.log("refs", this.refs, this.refs[key], key);
       this.chartInit(this.refs[key], key);
     }
   },
   methods: {
     chartInit(el, key) {
       let myChart = echarts.init(el);
-      console.log("chartInit", this.chartDataList);
       myChart.setOption(this.chartDataList[key]);
     }
   }
