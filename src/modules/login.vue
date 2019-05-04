@@ -17,6 +17,7 @@
   </div>
 </template>
 <script>
+import {getWeather} from '../js/api.js'
 export default {
   data() {
     return {
@@ -26,6 +27,7 @@ export default {
     };
   },
   mounted() {
+    getWeather('北京')
   },
   methods: {
     loginIn(){
