@@ -1,24 +1,24 @@
-import Vue from "vue";
-import Vuex from 'vuex';
-Vue.use(Vuex);
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
 
 const state = {
-    login: 'ssssssssss', //是否登录
+  login: 'ssssssssss' // 是否登录
 }
-const getters={
+const getters = {
 
-};
-const actions={
+}
+const actions = {
 
-};
-const mutations={
-    // updateObj(state,payload){
-    //     state.payload['key']=payload['value'] | payload['val']
-    // }
+}
+const mutations = {
+  // updateObj(state,payload){
+  //     state.payload['key']=payload['value'] | payload['val']
+  // }
 }
 export default new Vuex.Store({
-    state,
-    getters,
-    actions,
-    mutations,
+  state,
+  getters,
+  actions,
+  mutations
 })

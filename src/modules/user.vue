@@ -11,6 +11,7 @@
         background-color="#3c8dbc"
         text-color="#fff"
         active-text-color="#ffd04b"
+        @select="handleSelectTop"
       >
         <el-menu-item index="1">退出</el-menu-item>
         <el-submenu index="2">
@@ -33,8 +34,6 @@
         <el-menu
           :default-active="curNav"
           class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
@@ -47,12 +46,10 @@
               <i class="iconfont icon-coursera"></i>
               <span slot="title">实时流程</span>
             </template>
-            <el-submenu index="1-1">
-              <template slot="title">XXXX1车间</template>
-              <el-menu-item index="1-1-1">xxxx工段视频</el-menu-item>
-              <el-menu-item index="1-1-2">xxxx工段视频</el-menu-item>
-            </el-submenu>
-            <el-menu-item index="1-2">XXXX2车间</el-menu-item>
+            <el-menu-item index="1-1">gasPipeline</el-menu-item>
+            <el-menu-item index="1-2">htap</el-menu-item>
+            <el-menu-item index="1-3">metering</el-menu-item>
+            <el-menu-item index="1-4">largeScreen</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
@@ -73,7 +70,6 @@
             <el-menu-item index="3-2">填报报表</el-menu-item>
             <el-menu-item index="3-3">统计分析</el-menu-item>
             <el-menu-item index="3-4">驾驶舱</el-menu-item>
-            <el-menu-item index="3-5">数据钻取</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">
@@ -119,23 +115,10 @@ export default {
   },
   components: {},
   mounted() {
-console.log(1,this.$store)
-
   },
   methods: {
     switchNavStyle() {
       this.isCollapse = !this.isCollapse;
-      // js修改侧栏宽度
-      // if (this.isCollapse) {
-      //   if (this.navEls.length == 0)
-      //     this.navEls = document.getElementsByClassName("el-submenu__title");
-      //   console.log("this.navEls", this.navEls);
-      //   setTimeout(() => {
-      //     for (let i = 2; i < this.navEls.length; i++) {
-      //       this.navEls[i].style["padding-left"] = "8px";
-      //     }
-      //   },500);
-      // }
     },
     // sendmessage() {
     //   console.log("sendmessage");
@@ -145,20 +128,26 @@ console.log(1,this.$store)
     //   console.log("closemessage");
     //   WS.close();
     // },
+    handleSelectTop(key,keyPath){
+      if(key==1) this.$router.push({ name: 'login' });
+    },
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
       this.curNav = keyPath[0];
-      console.log("routes", routes[0].children[this.curNav - 1].name);
-
-      // this.$router.push(routes[0].children[this.curNav-1].name)
-      this.$router.push({ name: routes[0].children[this.curNav - 1].name });
+      let keys=key.split('-');
+      let n=0;
+      let array_navs=routes[0].children;
+      let componentName=this.getRouteName(0,keys,array_navs);
+      this.$router.push({ name: componentName });
     },
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
+    getRouteName(cursor,keys,arrTemple){
+        let index=keys[cursor]-1;
+        let objTemple=arrTemple[index];
+        if(objTemple.hasOwnProperty('children')){
+          return this.getRouteName(cursor+1,keys,objTemple.children);
+        }else{
+          return objTemple.name;
+        }
+      }
   }
 };
 </script>
