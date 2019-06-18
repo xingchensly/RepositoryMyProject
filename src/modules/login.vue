@@ -1,24 +1,24 @@
 <template>
   <div id="login">
     <div class="loginSection">
-      <div class="weather">
+      <div class="weather" v-if="weatherData.last_update">
         <div class="weatherMain">
           <div class="temperature">
-            <span>21℃</span>
+            <span>{{weatherData.now.temperature}}℃</span>
           </div>
           <div class="weatherImg">
             <img src="../img/cloudy.png" alt>
           </div>
         </div>
         <div class="weatherText">
-          <span class="addres">西安市</span>
-          <span>5月5日 阴 西北风 湿度：80%</span>
+          <span class="addres">{{weatherData.location.name}}</span>
+          <span>{{weatherData.last_update.slice(0,10)}} {{weatherData.now.text}}</span>
         </div>
       </div>
       <div class="loginDiv">
         <div class="logo">
           <img src="../img/logo.png" alt class="firstImg">
-          <img src="../img/team.jpg" alt class="secondImg">
+          <!-- <img src="../img/team.jpg" alt class="secondImg"> -->
         </div>
         <div class="loginInfo">
           <div class="loginTips">Login to your account</div>
@@ -40,6 +40,8 @@
 </template>
 <script>
 import { getWeather } from "../js/api.js";
+import {mapState} from "vuex";
+
 export default {
   data() {
     return {
@@ -48,8 +50,14 @@ export default {
       }
     };
   },
+  computed:{
+    ...mapState(['weatherData'])
+  }
+  ,
   mounted() {
-    // getWeather('北京')
+    getWeather((data)=>{
+      this.$store.commit('updateObj',{"key":"weatherData","val":data})
+    });
   },
   methods: {
     loginIn() {
@@ -115,10 +123,10 @@ export default {
         height: 60px;
       }
       .firstImg {
-        border-right: 1px solid #fff;
       }
       .secondImg{
-        margin-left: 10px;
+        padding-left: 10px;
+        border-left: 1px solid #fff;
       }
     }
     .loginInfo {

@@ -1,11 +1,11 @@
 import 'whatwg-fetch'
 import { urlList } from '../config/urls.js'
-
+import Vuex from "vuex";
 // WS.onmessage(data=>{
 //     console.log(JSON.parse(data))
 // })
-export let getWeather = (city) => {
-  if (!city) return
+export let getWeather = (cb) => {
+  // if (!city) return
   fetch(`${urlList.weatherApi}`, {
     method: 'get'
   })
@@ -13,7 +13,9 @@ export let getWeather = (city) => {
       return res.json()
     })
     .then(data => {
-      console.log('fetch data', data)
+      console.log(data)
+      cb&&cb(data.results[0])
+      // Vuex.Store.commit('updateObj', {weatherData:data.results[0]})
     })
     .catch(err => {
       console.log('请求错误', err)

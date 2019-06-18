@@ -1,40 +1,53 @@
 <template>
   <div id="management">
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="date" label="日期" width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
-    </el-table>
+    <TreeChart :json="treeData"/>
   </div>
 </template>
 <script>
+import TreeChart from "vue-tree-chart";
+
 export default {
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ]
+      treeData: {
+        name: "root",
+        image_url: "https://static.refined-x.com/avat.jpg",
+        children: [
+          {
+            name: "children1",
+            image_url: "https://static.refined-x.com/avat1.jpg"
+          },
+          {
+            name: "children2",
+            image_url: "https://static.refined-x.com/avat2.jpg",
+            mate: {
+              name: "mate",
+              image_url: "https://static.refined-x.com/avat3.jpg"
+            },
+            children: [
+              {
+                name: "grandchild",
+                image_url: "https://static.refined-x.com/avat.jpg"
+              },
+              {
+                name: "grandchild2",
+                image_url: "https://static.refined-x.com/avat1.jpg"
+              },
+              {
+                name: "grandchild3",
+                image_url: "https://static.refined-x.com/avat2.jpg"
+              }
+            ]
+          },
+          {
+            name: "children3",
+            image_url: "https://static.refined-x.com/avat.jpg"
+          }
+        ]
+      }
     };
   },
+  components:{TreeChart},
   mounted() {},
   methods: {}
 };

@@ -6,7 +6,7 @@
         <div class="rc_1 chartPart" ref="lineArea1"></div>
       </div>
       <div class="chartPart row1_colomn2">
-        <iframe src="//172.93.39.153/AAAAA/" frameborder="0" id="frame"></iframe>
+        <iframe src="//117.34.118.57:33061/bian/aktj/" frameborder="0" id="frame"></iframe>
       </div>
       <div class="row1_colomn1 chartPart2">
         <div class="rc_1 margin_b chartPart" ref="waterFullBar2"></div>
