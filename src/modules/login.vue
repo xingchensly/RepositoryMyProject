@@ -31,7 +31,7 @@
             <input type="text" class="inputs">
           </div>
           <div class="btn_section">
-            <div class="btn" @click="loginIn">登陆</div>
+            <div class="btn pointer" @click="loginIn">登陆</div>
           </div>
         </div>
       </div>
