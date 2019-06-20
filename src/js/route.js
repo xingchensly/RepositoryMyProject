@@ -15,6 +15,9 @@ import gasPipeline from '../modules/gasPipeline.vue'
 import htap from '../modules/htap.vue'
 import metering from '../modules/metering.vue'
 import largeScreen from '../modules/largeScreen.vue'
+import personManage from '../modules/personManage.vue'
+import sourceManage from '../modules/sourceManage.vue'
+import roleManage from '../modules/roleManage.vue'
 
 export let routes = [{
   path: '/user',
@@ -81,7 +84,22 @@ export let routes = [{
   {
     path: '/management',
     name: 'management',
-    component: management
+    component: management,
+    children: [{
+      path: 'personManage',
+      name: 'personManage',
+      component: personManage
+    },
+    {
+      path: 'roleManage',
+      name: 'roleManage',
+      component: roleManage
+    }, {
+      path: 'sourceManage',
+      name: 'sourceManage',
+      component: sourceManage
+    }
+    ]
   },
   {
     path: '/analysis',

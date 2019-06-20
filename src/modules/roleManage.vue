@@ -1,19 +1,21 @@
 <template>
-  <div id="management">
-    <router-view></router-view>
+  <div id="roleManage">
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+    };
+  },
+  mounted() {},
+  methods: {}
 };
 </script>
 <style lang="scss">
-#management {
+#roleManage {
   width: 100%;
   height: 100%;
   background-size: 100% 100%;
-  background-color: #fff;
 }
 </style>
-
-
