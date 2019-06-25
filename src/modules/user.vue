@@ -70,6 +70,7 @@
             <el-menu-item index="3-2">填报报表</el-menu-item>
             <el-menu-item index="3-3">统计分析</el-menu-item>
             <el-menu-item index="3-4">驾驶舱</el-menu-item>
+            <el-menu-item index="3-5">太阳能</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">
