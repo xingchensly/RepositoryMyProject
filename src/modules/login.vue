@@ -55,9 +55,9 @@ export default {
   }
   ,
   mounted() {
-    // getWeather((data)=>{
-    //   this.$store.commit('updateObj',{"key":"weatherData","val":data})
-    // });
+    getWeather((data)=>{
+      this.$store.commit('updateObj',{"key":"weatherData","val":data})
+    });
   },
   methods: {
     loginIn() {
