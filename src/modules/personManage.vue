@@ -1,10 +1,17 @@
 <template>
   <div id="personManage">
     <div class="block">
+<<<<<<< HEAD
       <el-tree :data="data" node-key="id" default-expand-all :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <span>{{ node.label }}</span>
           <span >
+=======
+      <el-tree :data="data" node-key="id" default-expand-all :expand-on-click-node="true" >
+        <span class="custom-tree-node" slot-scope="{ node, data }">
+          <span>{{ node.label }}</span>
+          <span v-if="false">
+>>>>>>> a30c121ac6777f79eceae9e3b4d3766baa3062fa
             <el-button type="text" size="mini" @click="() => append(data)">增加</el-button>
             <el-button v-if="node.id>1" type="text" size="mini" @click="() => remove(node, data)">删除</el-button>
           </span>
