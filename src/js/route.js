@@ -4,6 +4,8 @@ import course from '../modules/course.vue'
 import charts from '../modules/charts.vue'
 import management from '../modules/management.vue'
 import alert from '../modules/alert.vue'
+import alertCur from '../modules/alertCur.vue'
+import alertHistory from '../modules/alertHistory.vue'
 import chartAnalyse from '../modules/chartAnalyse.vue'
 import chartCabin from '../modules/chartCabin.vue'
 import chartSunEnergy from '../modules/chartSunEnergy.vue'
@@ -51,7 +53,18 @@ export let routes = [{
   {
     path: '/alert',
     name: 'alert',
-    component: alert
+    component: alert,
+    children: [
+      {
+        path: 'alertCur',
+        name: 'alertCur',
+        component: alertCur
+      }, {
+        path: 'alertHistory',
+        name: 'alertHistory',
+        component: alertHistory
+      }
+    ]
   },
   {
     path: '/charts',
