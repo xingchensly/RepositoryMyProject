@@ -9,6 +9,7 @@ import alertHistory from '../modules/alertHistory.vue'
 import chartAnalyse from '../modules/chartAnalyse.vue'
 import chartCabin from '../modules/chartCabin.vue'
 import chartSunEnergy from '../modules/chartSunEnergy.vue'
+import chartGasWell from '../modules/chartGasWell.vue'
 import chartEdit from '../modules/chartEdit.vue'
 import chartQuery from '../modules/chartQuery.vue'
 import analysis from '../modules/analysis.vue'
@@ -98,6 +99,12 @@ export let routes = [{
       path: 'chartSunEnergy',
       name: 'chartSunEnergy',
       component: chartSunEnergy
+    },
+    {
+
+      path: 'chartGasWell',
+      name: 'chartGasWell',
+      component: chartGasWell
     }
     ]
   },

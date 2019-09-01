@@ -1,6 +1,6 @@
 <template>
-  <div id="chartSun">
-    <iframe src="//117.34.118.44:33061/sun_energy/index.html" frameborder="0"></iframe>
+  <div id="gasWell">
+    <iframe src="//117.34.118.44:33061/gasWell/index.html" frameborder="0"></iframe>
   </div>
 </template>
 <script>
@@ -15,7 +15,7 @@ export default {
 };
 </script>
 <style lang="scss">
-#chartSun {
+#gasWell {
   width: 100%;
   height: 100%;
   background-color: transparent;
