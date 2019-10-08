@@ -12,6 +12,8 @@ import chartSunEnergy from '../modules/chartSunEnergy.vue'
 import chartGasWell from '../modules/chartGasWell.vue'
 import chartEdit from '../modules/chartEdit.vue'
 import chartQuery from '../modules/chartQuery.vue'
+import chartGas3D from '../modules/chartGas3D.vue'
+import chartGasCar from '../modules/chartGasCar.vue'
 import analysis from '../modules/analysis.vue'
 import login from '../modules/login.vue'
 import user from '../modules/user.vue'
@@ -105,6 +107,18 @@ export let routes = [{
       path: 'chartGasWell',
       name: 'chartGasWell',
       component: chartGasWell
+    },
+    {
+
+      path: 'chartGas3D',
+      name: 'chartGas3D',
+      component: chartGas3D
+    },
+    {
+
+      path: 'chartGasCar',
+      name: 'chartGasCar',
+      component: chartGasCar
     }
     ]
   },

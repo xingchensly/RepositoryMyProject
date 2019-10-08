@@ -72,6 +72,8 @@
             <el-menu-item index="3-4">驾驶舱</el-menu-item>
             <el-menu-item index="3-5">太阳能</el-menu-item>
             <el-menu-item index="3-6">气井</el-menu-item>
+            <el-menu-item index="3-7">气井3D</el-menu-item>
+            <el-menu-item index="3-8">气井压裂车</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">
